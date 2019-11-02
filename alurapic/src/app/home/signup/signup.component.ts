@@ -9,7 +9,8 @@ import { PlatformDetectorService } from 'src/app/core/platform-detector/platform
 import { lowerCaseValidator } from 'src/app/shared/validators/lower-case-validator';
 
 @Component({
-    templateUrl: './signup.component.html'
+    templateUrl: './signup.component.html',
+    providers: [ UserNotTakenValidatorService ]
 })
 export class SignUpComponent implements OnInit {
     
