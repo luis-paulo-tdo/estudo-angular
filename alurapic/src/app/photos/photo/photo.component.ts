@@ -19,7 +19,6 @@ export class PhotoComponent {
         } else {
             this._url = url;
         }
-        
     }
 
     get url() {
