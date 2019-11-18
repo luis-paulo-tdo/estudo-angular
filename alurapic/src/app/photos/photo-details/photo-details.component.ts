@@ -7,13 +7,12 @@ import { PhotoComment } from '../photo/photo-comment';
 import { PhotoService } from '../photo/photo.service';
 
 @Component({
-    templateUrl: 'photo-details.component.html',
-    styleUrls: ['photo-details.css']
+    templateUrl: 'photo-details.component.html'
 })
 export class PhotoDetailsComponent implements OnInit {
 
+    photoId: number;
     photo$: Observable<Photo>;
-    comments$: Observable<Array<PhotoComment>>;
     
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -21,8 +20,7 @@ export class PhotoDetailsComponent implements OnInit {
     ) { }
     
     ngOnInit(): void {
-        const photoId = this.activatedRoute.snapshot.params.photoId;
-        this.photo$ = this.photoService.findById(photoId);
-        this.comments$ = this.photoService.getComments(photoId)
+        this.photoId = this.activatedRoute.snapshot.params.photoId;
+        this.photo$ = this.photoService.findById(this.photoId);
     }
 }
