@@ -3,9 +3,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { RequestInterceptor } from './auth/request-interceptor';
+import { AlertModule } from '../shared/components/alert/alert.module';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { RequestInterceptor } from './auth/request-interceptor';
 
 @NgModule({
     declarations: [
@@ -17,6 +18,7 @@ import { HeaderComponent } from './header/header.component';
         HeaderComponent
     ],
     imports: [
+        AlertModule,
         CommonModule,
         RouterModule
     ],
