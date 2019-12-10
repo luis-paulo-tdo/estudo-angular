@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AlertModule } from '../shared/components/alert/alert.module';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { LoadingModule } from '../shared/components/loading/loading.module';
 import { RequestInterceptor } from './auth/request-interceptor';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { RequestInterceptor } from './auth/request-interceptor';
     imports: [
         AlertModule,
         CommonModule,
+        LoadingModule,
         RouterModule
     ],
     providers: [
