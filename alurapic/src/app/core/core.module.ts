@@ -7,6 +7,7 @@ import { AlertModule } from '../shared/components/alert/alert.module';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { LoadingModule } from '../shared/components/loading/loading.module';
+import { MenuModule } from '../shared/components/menu/menu.module';
 import { RequestInterceptor } from './auth/request-interceptor';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { RequestInterceptor } from './auth/request-interceptor';
         AlertModule,
         CommonModule,
         LoadingModule,
+        MenuModule,
         RouterModule
     ],
     providers: [
