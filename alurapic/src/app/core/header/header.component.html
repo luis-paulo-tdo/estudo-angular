@@ -2,7 +2,11 @@
     <nav class="navbar navbar-light bg-white">
 
         <a class="navbar-brand">
-            <i class="fa fa-bars mr-2" (click)="menu.toggle()"></i>
+            <i 
+                class="fa fa-bars mr-2" 
+                tabindex="0" 
+                (click)="menu.toggle()"
+                (keyup.space)="menu.toggle()"></i>
             ALURAPIC
         </a>
 
