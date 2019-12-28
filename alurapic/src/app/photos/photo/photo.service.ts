@@ -23,7 +23,7 @@ export class PhotoService {
 
     listFromUserPaginated(userName: string, page: number) {
         const params = new HttpParams().append('page', page.toString());
-        return this.http.get<Photo[]>(API + '/' + userName + '/photosx', { params });
+        return this.http.get<Photo[]>(API + '/' + userName + '/photos', { params });
     }
 
     upload(description: string, allowComments: boolean, file: File) {
@@ -43,7 +43,7 @@ export class PhotoService {
     }
 
     findById(photoId: number) {
-        return this.http.get<Photo>(API + '/photos/' + photoId);
+        return this.http.get<Photo>(API + '/photosx/' + photoId);
     }
 
     getComments(photoId: number) {
