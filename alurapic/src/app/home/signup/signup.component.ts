@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 
 import { NewUser } from './new-user';
 import { SignUpService } from './signup.service';
-import { UserNotTakenValidatorService } from './user-not-taken.service';
+import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
 import { PlatformDetectorService } from 'src/app/core/platform-detector/platform-detector.service';
 import { lowerCaseValidator } from 'src/app/shared/validators/lower-case-validator';
+import { userNamePasswordValidator } from './username-password.validator';
 
 @Component({
     templateUrl: './signup.component.html',
@@ -59,6 +60,9 @@ export class SignUpComponent implements OnInit {
                     Validators.maxLength(14),
                 ]
             ],
+        },
+        {
+            validator: userNamePasswordValidator
         });
         this.platformDetectorService.isPlatformBrowser() && 
             this.emailInput.nativeElement.focus();
