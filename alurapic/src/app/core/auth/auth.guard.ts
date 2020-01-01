@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
                     [''],
                     {
                         queryParams: {
-                            formUrl: state.url
+                            fromUrl: state.url
                         }
                     }
                 );

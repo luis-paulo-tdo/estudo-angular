@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { PlatformDetectorService } from 'src/app/core/platform-detector/platform-detector.service';
@@ -11,10 +10,12 @@ import { PlatformDetectorService } from 'src/app/core/platform-detector/platform
 })
 export class SignInComponent implements OnInit {
     
+    fromUrl: string;
     loginForm: FormGroup;
     @ViewChild('userNameInput') userNameInput: ElementRef<HTMLInputElement>;
     
     constructor(
+        private activatedRoute: ActivatedRoute,
         private authService: AuthService,
         private formBuilder: FormBuilder,
         private platformDetectorService: PlatformDetectorService,
@@ -22,6 +23,7 @@ export class SignInComponent implements OnInit {
     ) { }
     
     ngOnInit(): void {
+        this.activatedRoute.queryParams.subscribe(params => this.fromUrl = params.fromUrl);
         this.loginForm = this.formBuilder.group({
             userName: ['', Validators.required],
             password: ['', Validators.required]
@@ -36,13 +38,20 @@ export class SignInComponent implements OnInit {
         this.authService
             .authenticate(userName, password)
             .subscribe(
-                () => this.router.navigate(['user', userName]),
+                () => {
+                    if (this.fromUrl) {
+                        this.router.navigateByUrl(this.fromUrl);
+                    } else {
+                        this.router.navigate(['user', userName]);
+                    }
+                },
                 error => {
                     console.log(error);
                     this.loginForm.reset();
                     this.platformDetectorService.isPlatformBrowser() && 
                         this.userNameInput.nativeElement.focus();
                     alert('Usuário ou senha inválidos!');
-                });
+                }
+            );
     }
 }
